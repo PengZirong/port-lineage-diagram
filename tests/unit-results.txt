@@ -1,0 +1,27 @@
+test_build_is_deterministic_and_offline (test_lineage.LineageTests.test_build_is_deterministic_and_offline) ... ok
+test_choose_requires_conditions (test_lineage.LineageTests.test_choose_requires_conditions) ... ok
+test_complete_coverage (test_lineage.LineageTests.test_complete_coverage) ... ok
+test_control_cycle_is_not_data_cycle (test_lineage.LineageTests.test_control_cycle_is_not_data_cycle) ... ok
+test_data_cycle_rejected (test_lineage.LineageTests.test_data_cycle_rejected) ... ok
+test_duplicate_field_rejected (test_lineage.LineageTests.test_duplicate_field_rejected) ... ok
+test_example_rule_arithmetic (test_lineage.LineageTests.test_example_rule_arithmetic) ... ok
+test_generic_second_example_auto_layout (test_lineage.LineageTests.test_generic_second_example_auto_layout) ... ok
+test_id_is_bypass_not_pricing (test_lineage.LineageTests.test_id_is_bypass_not_pricing) ... ok
+test_injection_is_data_not_executable_html (test_lineage.LineageTests.test_injection_is_data_not_executable_html) ... ok
+test_missing_field_rejected (test_lineage.LineageTests.test_missing_field_rejected) ... ok
+test_no_partially_hardcoded_layout (test_lineage.LineageTests.test_no_partially_hardcoded_layout) ... ok
+test_overlap_is_rejected (test_lineage.LineageTests.test_overlap_is_rejected) ... ok
+test_passthrough_type_change_rejected (test_lineage.LineageTests.test_passthrough_type_change_rejected) ... ok
+test_payable_excludes_order_id (test_lineage.LineageTests.test_payable_excludes_order_id) ... ok
+test_root_constant_and_runtime_are_legal (test_lineage.LineageTests.test_root_constant_and_runtime_are_legal) ... ok
+test_safe_route_coordinates (test_lineage.LineageTests.test_safe_route_coordinates) ... ok
+test_same_name_is_not_identity (test_lineage.LineageTests.test_same_name_is_not_identity) ... ok
+test_selector_is_not_a_copied_value (test_lineage.LineageTests.test_selector_is_not_a_copied_value) ... ok
+test_shipping_has_no_price_dependency (test_lineage.LineageTests.test_shipping_has_no_price_dependency) ... ok
+test_unknown_cannot_count_as_covered (test_lineage.LineageTests.test_unknown_cannot_count_as_covered) ... ok
+test_verified_requires_evidence_and_grounding (test_lineage.LineageTests.test_verified_requires_evidence_and_grounding) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.026s
+
+OK

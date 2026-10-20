@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="lineage-svg" role="img" aria-label="文件导入：解析与审计汇合" viewBox="0 0 1265 704.0" width="1265" height="704.0">
+<defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".65" fill="#DCE5EF"/></pattern><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 Z" fill="context-stroke"/></marker></defs>
+<style>text{font-family:Inter,"Noto Sans CJK SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif}.field{cursor:pointer}.field:focus{outline:none}.field.selected .row-bg{stroke:#B67727;stroke-width:2}.dep{fill:none;stroke-linecap:round;stroke-linejoin:round;transition:opacity .15s}.dep.dim{opacity:.09}.dep.on{stroke-width:3;opacity:1}.field.dim{opacity:.68}.flow{fill:none;stroke:#ABBACD;stroke-width:4;opacity:.35}.flow.focused{opacity:.7}.node-frame{filter:drop-shadow(0 3px 6px #29486B08)}.field:hover .row-bg,.field:focus .row-bg{stroke:#7CA7D6;stroke-width:2}</style>
+<rect width="1265" height="704.0" fill="#FAFCFF"/><rect width="1265" height="704.0" fill="url(#dots)" opacity=".65"/>
+<g id="flow-edges" style="display:none">
+<path class="flow" data-source="clock" data-target="result" d="M340,507.0 C358,507.0 347,88.0 365,88.0 C587.6,88.0 672.4,88.0 895,88.0 C913,88.0 902,260.5 920,260.5" marker-end="url(#arrow)"/>
+<path class="flow" data-source="parse" data-target="result" d="M780,330.5 C844.4,330.5 855.6,260.5 920,260.5" marker-end="url(#arrow)"/>
+<path class="flow" data-source="upload" data-target="parse" d="M340,154.0 C404.4,154.0 415.6,330.5 480,330.5" marker-end="url(#arrow)"/>
+<path class="flow" data-source="upload" data-target="result" d="M340,154.0 C606.8,154.0 653.2,260.5 920,260.5" marker-end="url(#arrow)"/>
+</g><g id="dependency-edges">
+<path class="dep" data-source="upload.content" data-target="parse.row_count" data-role="value" data-when="" d="M340,309.0 C404.4,309.0 415.6,415.5 480,415.5" stroke="#D38727" stroke-width="1.65" marker-end="url(#arrow)"><title>upload.content → parse.row_count · value</title></path>
+<path class="dep" data-source="upload.file_name" data-target="result.file_name" data-role="value" data-when="" d="M340,239.0 C358,239.0 347,88.0 365,88.0 C587.6,88.0 672.4,88.0 895,88.0 C913,88.0 902,345.5 920,345.5" stroke="#3976CF" stroke-width="1.65" marker-end="url(#arrow)"><title>upload.file_name → result.file_name · value</title></path>
+<path class="dep" data-source="parse.row_count" data-target="result.row_count" data-role="value" data-when="" d="M780,415.5 C844.4,415.5 855.6,415.5 920,415.5" stroke="#3976CF" stroke-width="1.65" marker-end="url(#arrow)"><title>parse.row_count → result.row_count · value</title></path>
+<path class="dep" data-source="clock.now" data-target="result.received_at" data-role="value" data-when="" d="M340,592.0 C606.8,592.0 653.2,485.5 920,485.5" stroke="#199681" stroke-width="1.65" marker-end="url(#arrow)"><title>clock.now → result.received_at · value</title></path>
+</g><g id="control-edges">
+</g>
+<g class="node" data-node="upload">
+<rect class="node-frame" x="40" y="120.0" width="300" height="253" rx="15" fill="white" stroke="#B9D0F2" stroke-width="1.4"/>
+<path d="M55,120.0 H325 Q340,120.0 340,135.0 V190.0 H40 V135.0 Q40,120.0 55,120.0" fill="#EEF5FF"/>
+<text x="56" y="149.0" font-size="17" fill="#233C57" font-weight="750" text-anchor="start" class="">上传输入</text>
+<text x="56" y="172.0" font-size="10.5" fill="#7A8CA3" font-weight="500" text-anchor="start" class="">upload</text>
+<text x="56" y="205.0" font-size="10" fill="#8091A6" font-weight="500" text-anchor="start" class="">输出字段 · 输入依赖接在左端</text>
+<g class="field" data-field="upload.file_name" role="button" tabindex="0" aria-label="文件名 upload.file_name"><title>上传输入 · 文件名 (upload.file_name)
+源：upload.file_name
+
+</title>
+<rect class="row-bg" x="49" y="215.0" width="282" height="61" rx="7" fill="#EEF5FF" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="57" y="226.0" width="3" height="14" rx="1.5" fill="#3976CF"/>
+<text x="67" y="237.0" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">文件名</text>
+<text x="324" y="237.0" font-size="10" fill="#3976CF" font-weight="650" text-anchor="end" class="">源</text>
+<text x="67" y="254.0" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">file_name</text>
+<text x="324" y="254.0" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">str</text>
+<text x="67" y="269.0" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">源：upload.file_name</text>
+<circle cx="340" cy="239.0" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+</g>
+<g class="field" data-field="upload.content" role="button" tabindex="0" aria-label="文件内容 upload.content"><title>上传输入 · 文件内容 (upload.content)
+源：uploaded bytes
+
+</title>
+<rect class="row-bg" x="49" y="285.0" width="282" height="61" rx="7" fill="#EEF5FF" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="57" y="296.0" width="3" height="14" rx="1.5" fill="#3976CF"/>
+<text x="67" y="307.0" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">文件内容</text>
+<text x="324" y="307.0" font-size="10" fill="#3976CF" font-weight="650" text-anchor="end" class="">源</text>
+<text x="67" y="324.0" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">content</text>
+<text x="324" y="324.0" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">bytes</text>
+<text x="67" y="339.0" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">源：uploaded bytes</text>
+<circle cx="340" cy="309.0" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+</g>
+</g>
+<g class="node" data-node="parse">
+<rect class="node-frame" x="480" y="296.5" width="300" height="183" rx="15" fill="white" stroke="#AADACD" stroke-width="1.4"/>
+<path d="M495,296.5 H765 Q780,296.5 780,311.5 V366.5 H480 V311.5 Q480,296.5 495,296.5" fill="#EDFAF6"/>
+<text x="496" y="325.5" font-size="17" fill="#233C57" font-weight="750" text-anchor="start" class="">解析内容</text>
+<text x="496" y="348.5" font-size="10.5" fill="#7A8CA3" font-weight="500" text-anchor="start" class="">parse</text>
+<text x="496" y="381.5" font-size="10" fill="#8091A6" font-weight="500" text-anchor="start" class="">输出字段 · 输入依赖接在左端</text>
+<g class="field" data-field="parse.row_count" role="button" tabindex="0" aria-label="数据行数 parse.row_count"><title>解析内容 · 数据行数 (parse.row_count)
+← 上传输入.文件内容
+count_data_rows(content)
+</title>
+<rect class="row-bg" x="489" y="391.5" width="282" height="61" rx="7" fill="#EDFAF6" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="497" y="402.5" width="3" height="14" rx="1.5" fill="#D38727"/>
+<text x="507" y="413.5" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">数据行数</text>
+<text x="764" y="413.5" font-size="10" fill="#D38727" font-weight="650" text-anchor="end" class="">计算</text>
+<text x="507" y="430.5" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">row_count</text>
+<text x="764" y="430.5" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">int</text>
+<text x="507" y="445.5" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">count_data_rows(content)</text>
+<circle cx="480" cy="415.5" r="3.8" fill="#D38727" stroke="white" stroke-width="1.2"/>
+<circle cx="780" cy="415.5" r="3.8" fill="#D38727" stroke="white" stroke-width="1.2"/>
+</g>
+</g>
+<g class="node" data-node="clock">
+<rect class="node-frame" x="40" y="473.0" width="300" height="183" rx="15" fill="white" stroke="#B9D0F2" stroke-width="1.4"/>
+<path d="M55,473.0 H325 Q340,473.0 340,488.0 V543.0 H40 V488.0 Q40,473.0 55,473.0" fill="#EEF5FF"/>
+<text x="56" y="502.0" font-size="17" fill="#233C57" font-weight="750" text-anchor="start" class="">系统时钟</text>
+<text x="56" y="525.0" font-size="10.5" fill="#7A8CA3" font-weight="500" text-anchor="start" class="">clock</text>
+<text x="56" y="558.0" font-size="10" fill="#8091A6" font-weight="500" text-anchor="start" class="">输出字段 · 输入依赖接在左端</text>
+<g class="field" data-field="clock.now" role="button" tabindex="0" aria-label="接收时间 clock.now"><title>系统时钟 · 接收时间 (clock.now)
+源：clock.now
+
+</title>
+<rect class="row-bg" x="49" y="568.0" width="282" height="61" rx="7" fill="#EEF5FF" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="57" y="579.0" width="3" height="14" rx="1.5" fill="#3976CF"/>
+<text x="67" y="590.0" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">接收时间</text>
+<text x="324" y="590.0" font-size="10" fill="#3976CF" font-weight="650" text-anchor="end" class="">源</text>
+<text x="67" y="607.0" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">now</text>
+<text x="324" y="607.0" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">datetime</text>
+<text x="67" y="622.0" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">源：clock.now</text>
+<circle cx="340" cy="592.0" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+</g>
+</g>
+<g class="node" data-node="result">
+<rect class="node-frame" x="920" y="226.5" width="300" height="323" rx="15" fill="white" stroke="#EACD9E" stroke-width="1.4"/>
+<path d="M935,226.5 H1205 Q1220,226.5 1220,241.5 V296.5 H920 V241.5 Q920,226.5 935,226.5" fill="#FFF6E8"/>
+<text x="936" y="255.5" font-size="17" fill="#233C57" font-weight="750" text-anchor="start" class="">导入结果</text>
+<text x="936" y="278.5" font-size="10.5" fill="#7A8CA3" font-weight="500" text-anchor="start" class="">result</text>
+<text x="936" y="311.5" font-size="10" fill="#8091A6" font-weight="500" text-anchor="start" class="">输出字段 · 输入依赖接在左端</text>
+<g class="field" data-field="result.file_name" role="button" tabindex="0" aria-label="文件名 result.file_name"><title>导入结果 · 文件名 (result.file_name)
+← 上传输入.文件名
+
+</title>
+<rect class="row-bg" x="929" y="321.5" width="282" height="61" rx="7" fill="#FFF6E8" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="937" y="332.5" width="3" height="14" rx="1.5" fill="#3976CF"/>
+<text x="947" y="343.5" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">文件名</text>
+<text x="1204" y="343.5" font-size="10" fill="#3976CF" font-weight="650" text-anchor="end" class="">透传</text>
+<text x="947" y="360.5" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">file_name</text>
+<text x="1204" y="360.5" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">str</text>
+<text x="947" y="375.5" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">← 上传输入.文件名</text>
+<circle cx="920" cy="345.5" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+<circle cx="1220" cy="345.5" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+</g>
+<g class="field" data-field="result.row_count" role="button" tabindex="0" aria-label="数据行数 result.row_count"><title>导入结果 · 数据行数 (result.row_count)
+← 解析内容.数据行数
+
+</title>
+<rect class="row-bg" x="929" y="391.5" width="282" height="61" rx="7" fill="#FFF6E8" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="937" y="402.5" width="3" height="14" rx="1.5" fill="#3976CF"/>
+<text x="947" y="413.5" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">数据行数</text>
+<text x="1204" y="413.5" font-size="10" fill="#3976CF" font-weight="650" text-anchor="end" class="">透传</text>
+<text x="947" y="430.5" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">row_count</text>
+<text x="1204" y="430.5" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">int</text>
+<text x="947" y="445.5" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">← 解析内容.数据行数</text>
+<circle cx="920" cy="415.5" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+<circle cx="1220" cy="415.5" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+</g>
+<g class="field" data-field="result.received_at" role="button" tabindex="0" aria-label="接收时间 result.received_at"><title>导入结果 · 接收时间 (result.received_at)
+← 系统时钟.接收时间
+
+</title>
+<rect class="row-bg" x="929" y="461.5" width="282" height="61" rx="7" fill="#FFF6E8" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="937" y="472.5" width="3" height="14" rx="1.5" fill="#199681"/>
+<text x="947" y="483.5" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">接收时间</text>
+<text x="1204" y="483.5" font-size="10" fill="#199681" font-weight="650" text-anchor="end" class="">更名</text>
+<text x="947" y="500.5" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">received_at</text>
+<text x="1204" y="500.5" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">datetime</text>
+<text x="947" y="515.5" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">← 系统时钟.接收时间</text>
+<circle cx="920" cy="485.5" r="3.8" fill="#199681" stroke="white" stroke-width="1.2"/>
+<circle cx="1220" cy="485.5" r="3.8" fill="#199681" stroke="white" stroke-width="1.2"/>
+</g>
+</g>
+</svg>

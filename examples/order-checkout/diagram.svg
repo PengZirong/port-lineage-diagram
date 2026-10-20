@@ -1,0 +1,361 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="lineage-svg" role="img" aria-label="一笔订单的应付金额，从哪里来？" viewBox="0 0 1690 1151" width="1690" height="1151">
+<defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".65" fill="#DCE5EF"/></pattern><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 Z" fill="context-stroke"/></marker></defs>
+<style>text{font-family:Inter,"Noto Sans CJK SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif}.field{cursor:pointer}.field:focus{outline:none}.field.selected .row-bg{stroke:#B67727;stroke-width:2}.dep{fill:none;stroke-linecap:round;stroke-linejoin:round;transition:opacity .15s}.dep.dim{opacity:.09}.dep.on{stroke-width:3;opacity:1}.field.dim{opacity:.68}.flow{fill:none;stroke:#ABBACD;stroke-width:4;opacity:.35}.flow.focused{opacity:.7}.node-frame{filter:drop-shadow(0 3px 6px #29486B08)}.field:hover .row-bg,.field:focus .row-bg{stroke:#7CA7D6;stroke-width:2}</style>
+<rect width="1690" height="1151" fill="#FAFCFF"/><rect width="1690" height="1151" fill="url(#dots)" opacity=".65"/>
+<g id="flow-edges" style="display:none">
+<path class="flow" data-source="clean" data-target="checkout" d="M680,349 C698,349 687,13 705,13 C944.4,13 1035.6,13 1275,13 C1293,13 1282,359 1300,359" marker-end="url(#arrow)"/>
+<path class="flow" data-source="clean" data-target="pricing" d="M680,349 C746.7,349 758.3,189 825,189" marker-end="url(#arrow)"/>
+<path class="flow" data-source="clean" data-target="shipping" d="M680,349 C746.7,349 758.3,834 825,834" marker-end="url(#arrow)"/>
+<path class="flow" data-source="coupons" data-target="pricing" d="M680,79 C746.7,79 758.3,189 825,189" marker-end="url(#arrow)"/>
+<path class="flow" data-source="order" data-target="clean" d="M295,349 C335,349 330,349 370,349" marker-end="url(#arrow)"/>
+<path class="flow" data-source="pricing" data-target="checkout" d="M1160,189 C1224.4,189 1235.6,359 1300,359" marker-end="url(#arrow)"/>
+<path class="flow" data-source="rates" data-target="shipping" d="M680,954 C746.7,954 758.3,834 825,834" marker-end="url(#arrow)"/>
+<path class="flow" data-source="shipping" data-target="checkout" d="M1160,834 C1224.4,834 1235.6,359 1300,359" marker-end="url(#arrow)"/>
+</g><g id="dependency-edges">
+<path class="dep" data-source="order.order_id" data-target="clean.order_id" data-role="value" data-when="" d="M295,434 C335,434 330,434 370,434" stroke="#3976CF" stroke-width="1.65" marker-end="url(#arrow)"><title>order.order_id → clean.order_id · value</title></path>
+<path class="dep" data-source="order.quantity" data-target="clean.quantity" data-role="value" data-when="" d="M295,504 C335,504 330,504 370,504" stroke="#199681" stroke-width="1.65" marker-end="url(#arrow)"><title>order.quantity → clean.quantity · value</title></path>
+<path class="dep" data-source="order.unit_price_fen" data-target="clean.unit_price_fen" data-role="value" data-when="" d="M295,574 C335,574 330,574 370,574" stroke="#3976CF" stroke-width="1.65" marker-end="url(#arrow)"><title>order.unit_price_fen → clean.unit_price_fen · value</title></path>
+<path class="dep" data-source="order.coupon_code" data-target="clean.coupon_code" data-role="value" data-when="" d="M295,644 C335,644 330,644 370,644" stroke="#199681" stroke-width="1.65" marker-end="url(#arrow)"><title>order.coupon_code → clean.coupon_code · value</title></path>
+<path class="dep" data-source="order.region" data-target="clean.region" data-role="value" data-when="" d="M295,714 C335,714 330,714 370,714" stroke="#3976CF" stroke-width="1.65" marker-end="url(#arrow)"><title>order.region → clean.region · value</title></path>
+<path class="dep" data-source="clean.quantity" data-target="pricing.goods_fen" data-role="value" data-when="" d="M680,504 C746.7,504 758.3,274 825,274" stroke="#D38727" stroke-width="1.65" marker-end="url(#arrow)"><title>clean.quantity → pricing.goods_fen · value</title></path>
+<path class="dep" data-source="clean.unit_price_fen" data-target="pricing.goods_fen" data-role="value" data-when="" d="M680,574 C746.7,574 758.3,274 825,274" stroke="#D38727" stroke-width="1.65" marker-end="url(#arrow)"><title>clean.unit_price_fen → pricing.goods_fen · value</title></path>
+<path class="dep" data-source="clean.coupon_code" data-target="pricing.coupon_fen" data-role="selector" data-when="" d="M680,644 C746.7,644 758.3,344 825,344" stroke="#8F68BF" stroke-width="1.65" stroke-dasharray="5 4" marker-end="url(#arrow)"><title>clean.coupon_code → pricing.coupon_fen · selector</title></path>
+<path class="dep" data-source="coupons.amounts" data-target="pricing.coupon_fen" data-role="value" data-when="" d="M680,164 C746.7,164 758.3,344 825,344" stroke="#9162C9" stroke-width="1.65" marker-end="url(#arrow)"><title>coupons.amounts → pricing.coupon_fen · value</title></path>
+<path class="dep" data-source="clean.region" data-target="shipping.shipping_fen" data-role="selector" data-when="" d="M680,714 C746.7,714 758.3,919 825,919" stroke="#8F68BF" stroke-width="1.65" stroke-dasharray="5 4" marker-end="url(#arrow)"><title>clean.region → shipping.shipping_fen · selector</title></path>
+<path class="dep" data-source="rates.fees" data-target="shipping.shipping_fen" data-role="value" data-when="" d="M680,1039 C746.7,1039 758.3,919 825,919" stroke="#9162C9" stroke-width="1.65" marker-end="url(#arrow)"><title>rates.fees → shipping.shipping_fen · value</title></path>
+<path class="dep" data-source="clean.order_id" data-target="checkout.order_id" data-role="value" data-when="" d="M680,434 C703.1,434 711.9,610 735,610 C942.9,610 1022.1,610 1230,610 C1259.4,610 1270.6,444 1300,444" stroke="#3976CF" stroke-width="1.65" marker-end="url(#arrow)"><title>clean.order_id → checkout.order_id · value</title></path>
+<path class="dep" data-source="pricing.goods_fen" data-target="checkout.goods_fen" data-role="value" data-when="" d="M1160,274 C1224.4,274 1235.6,514 1300,514" stroke="#3976CF" stroke-width="1.65" marker-end="url(#arrow)"><title>pricing.goods_fen → checkout.goods_fen · value</title></path>
+<path class="dep" data-source="pricing.coupon_fen" data-target="checkout.coupon_fen" data-role="value" data-when="" d="M1160,344 C1224.4,344 1235.6,584 1300,584" stroke="#3976CF" stroke-width="1.65" marker-end="url(#arrow)"><title>pricing.coupon_fen → checkout.coupon_fen · value</title></path>
+<path class="dep" data-source="shipping.shipping_fen" data-target="checkout.shipping_fen" data-role="value" data-when="" d="M1160,919 C1224.4,919 1235.6,654 1300,654" stroke="#3976CF" stroke-width="1.65" marker-end="url(#arrow)"><title>shipping.shipping_fen → checkout.shipping_fen · value</title></path>
+<path class="dep" data-source="pricing.goods_fen" data-target="checkout.payable_fen" data-role="value" data-when="" d="M1160,274 C1224.4,274 1235.6,724 1300,724" stroke="#D38727" stroke-width="1.65" marker-end="url(#arrow)"><title>pricing.goods_fen → checkout.payable_fen · value</title></path>
+<path class="dep" data-source="pricing.coupon_fen" data-target="checkout.payable_fen" data-role="value" data-when="" d="M1160,344 C1224.4,344 1235.6,724 1300,724" stroke="#D38727" stroke-width="1.65" marker-end="url(#arrow)"><title>pricing.coupon_fen → checkout.payable_fen · value</title></path>
+<path class="dep" data-source="shipping.shipping_fen" data-target="checkout.payable_fen" data-role="value" data-when="" d="M1160,919 C1224.4,919 1235.6,724 1300,724" stroke="#D38727" stroke-width="1.65" marker-end="url(#arrow)"><title>shipping.shipping_fen → checkout.payable_fen · value</title></path>
+</g><g id="control-edges">
+</g>
+<g class="node" data-node="order">
+<rect class="node-frame" x="35" y="315" width="260" height="463" rx="15" fill="white" stroke="#B9D0F2" stroke-width="1.4"/>
+<path d="M50,315 H280 Q295,315 295,330 V385 H35 V330 Q35,315 50,315" fill="#EEF5FF"/>
+<text x="51" y="344" font-size="17" fill="#233C57" font-weight="750" text-anchor="start" class="">订单请求</text>
+<text x="51" y="367" font-size="10.5" fill="#7A8CA3" font-weight="500" text-anchor="start" class="">5 个根字段 · 单规格订单</text>
+<text x="51" y="400" font-size="10" fill="#8091A6" font-weight="500" text-anchor="start" class="">输出字段 · 输入依赖接在左端</text>
+<g class="field" data-field="order.order_id" role="button" tabindex="0" aria-label="订单号 order.order_id"><title>订单请求 · 订单号 (order.order_id)
+源：order.order_id
+
+</title>
+<rect class="row-bg" x="44" y="410" width="242" height="61" rx="7" fill="#EEF5FF" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="52" y="421" width="3" height="14" rx="1.5" fill="#3976CF"/>
+<text x="62" y="432" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">订单号</text>
+<text x="279" y="432" font-size="10" fill="#3976CF" font-weight="650" text-anchor="end" class="">源</text>
+<text x="62" y="449" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">order_id</text>
+<text x="279" y="449" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">str</text>
+<text x="62" y="464" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">源：order.order_id</text>
+<circle cx="295" cy="434" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+</g>
+<g class="field" data-field="order.quantity" role="button" tabindex="0" aria-label="购买数量 order.quantity"><title>订单请求 · 购买数量 (order.quantity)
+源：order.quantity
+
+</title>
+<rect class="row-bg" x="44" y="480" width="242" height="61" rx="7" fill="#EEF5FF" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="52" y="491" width="3" height="14" rx="1.5" fill="#3976CF"/>
+<text x="62" y="502" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">购买数量</text>
+<text x="279" y="502" font-size="10" fill="#3976CF" font-weight="650" text-anchor="end" class="">源</text>
+<text x="62" y="519" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">quantity</text>
+<text x="279" y="519" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">str</text>
+<text x="62" y="534" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">源：order.quantity</text>
+<circle cx="295" cy="504" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+</g>
+<g class="field" data-field="order.unit_price_fen" role="button" tabindex="0" aria-label="商品单价 order.unit_price_fen"><title>订单请求 · 商品单价 (order.unit_price_fen)
+源：order.unit_price_fen
+
+</title>
+<rect class="row-bg" x="44" y="550" width="242" height="61" rx="7" fill="#EEF5FF" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="52" y="561" width="3" height="14" rx="1.5" fill="#3976CF"/>
+<text x="62" y="572" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">商品单价</text>
+<text x="279" y="572" font-size="10" fill="#3976CF" font-weight="650" text-anchor="end" class="">源</text>
+<text x="62" y="589" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">unit_price_fen</text>
+<text x="279" y="589" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">int/分</text>
+<text x="62" y="604" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">源：order.unit_price_fen</text>
+<circle cx="295" cy="574" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+</g>
+<g class="field" data-field="order.coupon_code" role="button" tabindex="0" aria-label="优惠码 order.coupon_code"><title>订单请求 · 优惠码 (order.coupon_code)
+源：order.coupon_code
+
+</title>
+<rect class="row-bg" x="44" y="620" width="242" height="61" rx="7" fill="#EEF5FF" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="52" y="631" width="3" height="14" rx="1.5" fill="#3976CF"/>
+<text x="62" y="642" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">优惠码</text>
+<text x="279" y="642" font-size="10" fill="#3976CF" font-weight="650" text-anchor="end" class="">源</text>
+<text x="62" y="659" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">coupon_code</text>
+<text x="279" y="659" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">str</text>
+<text x="62" y="674" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">源：order.coupon_code</text>
+<circle cx="295" cy="644" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+</g>
+<g class="field" data-field="order.region" role="button" tabindex="0" aria-label="收货区域 order.region"><title>订单请求 · 收货区域 (order.region)
+源：order.region
+
+</title>
+<rect class="row-bg" x="44" y="690" width="242" height="61" rx="7" fill="#EEF5FF" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="52" y="701" width="3" height="14" rx="1.5" fill="#3976CF"/>
+<text x="62" y="712" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">收货区域</text>
+<text x="279" y="712" font-size="10" fill="#3976CF" font-weight="650" text-anchor="end" class="">源</text>
+<text x="62" y="729" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">region</text>
+<text x="279" y="729" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">str</text>
+<text x="62" y="744" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">源：order.region</text>
+<circle cx="295" cy="714" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+</g>
+</g>
+<g class="node" data-node="clean">
+<rect class="node-frame" x="370" y="315" width="310" height="463" rx="15" fill="white" stroke="#AADACD" stroke-width="1.4"/>
+<path d="M385,315 H665 Q680,315 680,330 V385 H370 V330 Q370,315 385,315" fill="#EDFAF6"/>
+<text x="386" y="344" font-size="17" fill="#233C57" font-weight="750" text-anchor="start" class="">校验与规范化</text>
+<text x="386" y="367" font-size="10.5" fill="#7A8CA3" font-weight="500" text-anchor="start" class="">5 → 5 · 改值，不凭空增字段</text>
+<text x="386" y="400" font-size="10" fill="#8091A6" font-weight="500" text-anchor="start" class="">输出字段 · 输入依赖接在左端</text>
+<g class="field" data-field="clean.order_id" role="button" tabindex="0" aria-label="订单号 clean.order_id"><title>校验与规范化 · 订单号 (clean.order_id)
+← 订单.订单号
+
+</title>
+<rect class="row-bg" x="379" y="410" width="292" height="61" rx="7" fill="#EDFAF6" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="387" y="421" width="3" height="14" rx="1.5" fill="#3976CF"/>
+<text x="397" y="432" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">订单号</text>
+<text x="664" y="432" font-size="10" fill="#3976CF" font-weight="650" text-anchor="end" class="">透传</text>
+<text x="397" y="449" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">order_id</text>
+<text x="664" y="449" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">str</text>
+<text x="397" y="464" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">← 订单.订单号</text>
+<circle cx="370" cy="434" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+<circle cx="680" cy="434" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+</g>
+<g class="field" data-field="clean.quantity" role="button" tabindex="0" aria-label="购买数量 clean.quantity"><title>校验与规范化 · 购买数量 (clean.quantity)
+← 订单.购买数量
+parse_positive_integer(order.quantity)
+</title>
+<rect class="row-bg" x="379" y="480" width="292" height="61" rx="7" fill="#EDFAF6" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="387" y="491" width="3" height="14" rx="1.5" fill="#199681"/>
+<text x="397" y="502" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">购买数量</text>
+<text x="664" y="502" font-size="10" fill="#199681" font-weight="650" text-anchor="end" class="">转型</text>
+<text x="397" y="519" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">quantity</text>
+<text x="664" y="519" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">int</text>
+<text x="397" y="534" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">&quot;2&quot; → 2；必须为正整数</text>
+<circle cx="370" cy="504" r="3.8" fill="#199681" stroke="white" stroke-width="1.2"/>
+<circle cx="680" cy="504" r="3.8" fill="#199681" stroke="white" stroke-width="1.2"/>
+</g>
+<g class="field" data-field="clean.unit_price_fen" role="button" tabindex="0" aria-label="商品单价 clean.unit_price_fen"><title>校验与规范化 · 商品单价 (clean.unit_price_fen)
+← 订单.商品单价
+
+</title>
+<rect class="row-bg" x="379" y="550" width="292" height="61" rx="7" fill="#EDFAF6" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="387" y="561" width="3" height="14" rx="1.5" fill="#3976CF"/>
+<text x="397" y="572" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">商品单价</text>
+<text x="664" y="572" font-size="10" fill="#3976CF" font-weight="650" text-anchor="end" class="">透传</text>
+<text x="397" y="589" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">unit_price_fen</text>
+<text x="664" y="589" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">int/分</text>
+<text x="397" y="604" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">← 订单.商品单价</text>
+<circle cx="370" cy="574" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+<circle cx="680" cy="574" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+</g>
+<g class="field" data-field="clean.coupon_code" role="button" tabindex="0" aria-label="优惠码 clean.coupon_code"><title>校验与规范化 · 优惠码 (clean.coupon_code)
+← 订单.优惠码
+upper(trim(order.coupon_code))
+</title>
+<rect class="row-bg" x="379" y="620" width="292" height="61" rx="7" fill="#EDFAF6" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="387" y="631" width="3" height="14" rx="1.5" fill="#199681"/>
+<text x="397" y="642" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">优惠码</text>
+<text x="664" y="642" font-size="10" fill="#199681" font-weight="650" text-anchor="end" class="">规范</text>
+<text x="397" y="659" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">coupon_code</text>
+<text x="664" y="659" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">str</text>
+<text x="397" y="674" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">去空格 + 转大写</text>
+<circle cx="370" cy="644" r="3.8" fill="#199681" stroke="white" stroke-width="1.2"/>
+<circle cx="680" cy="644" r="3.8" fill="#199681" stroke="white" stroke-width="1.2"/>
+</g>
+<g class="field" data-field="clean.region" role="button" tabindex="0" aria-label="收货区域 clean.region"><title>校验与规范化 · 收货区域 (clean.region)
+← 订单.收货区域
+
+</title>
+<rect class="row-bg" x="379" y="690" width="292" height="61" rx="7" fill="#EDFAF6" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="387" y="701" width="3" height="14" rx="1.5" fill="#3976CF"/>
+<text x="397" y="712" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">收货区域</text>
+<text x="664" y="712" font-size="10" fill="#3976CF" font-weight="650" text-anchor="end" class="">透传</text>
+<text x="397" y="729" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">region</text>
+<text x="664" y="729" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">str</text>
+<text x="397" y="744" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">← 订单.收货区域</text>
+<circle cx="370" cy="714" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+<circle cx="680" cy="714" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+</g>
+</g>
+<g class="node" data-node="coupons">
+<rect class="node-frame" x="400" y="45" width="280" height="183" rx="15" fill="white" stroke="#D8C5F0" stroke-width="1.4"/>
+<path d="M415,45 H665 Q680,45 680,60 V115 H400 V60 Q400,45 415,45" fill="#F5EFFF"/>
+<text x="416" y="74" font-size="17" fill="#233C57" font-weight="750" text-anchor="start" class="">优惠券配置</text>
+<text x="416" y="97" font-size="10.5" fill="#7A8CA3" font-weight="500" text-anchor="start" class="">配置值也是明确来源</text>
+<text x="416" y="130" font-size="10" fill="#8091A6" font-weight="500" text-anchor="start" class="">输出字段 · 输入依赖接在左端</text>
+<g class="field" data-field="coupons.amounts" role="button" tabindex="0" aria-label="优惠码 → 面额 coupons.amounts"><title>优惠券配置 · 优惠码 → 面额 (coupons.amounts)
+源：coupons.amounts
+
+</title>
+<rect class="row-bg" x="409" y="140" width="262" height="61" rx="7" fill="#F5EFFF" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="417" y="151" width="3" height="14" rx="1.5" fill="#9162C9"/>
+<text x="427" y="162" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">优惠码 → 面额</text>
+<text x="664" y="162" font-size="10" fill="#9162C9" font-weight="650" text-anchor="end" class="">源</text>
+<text x="427" y="179" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">amounts</text>
+<text x="664" y="179" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">map/分</text>
+<text x="427" y="194" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">SAVE20 → 2,000 分（20 元）</text>
+<circle cx="680" cy="164" r="3.8" fill="#9162C9" stroke="white" stroke-width="1.2"/>
+</g>
+</g>
+<g class="node" data-node="pricing">
+<rect class="node-frame" x="825" y="155" width="335" height="253" rx="15" fill="white" stroke="#AADACD" stroke-width="1.4"/>
+<path d="M840,155 H1145 Q1160,155 1160,170 V225 H825 V170 Q825,155 840,155" fill="#EDFAF6"/>
+<text x="841" y="184" font-size="17" fill="#233C57" font-weight="750" text-anchor="start" class="">价格计算 · 分支 A</text>
+<text x="841" y="207" font-size="10.5" fill="#7A8CA3" font-weight="500" text-anchor="start" class="">2 个新字段 · 不依赖运费分支</text>
+<text x="841" y="240" font-size="10" fill="#8091A6" font-weight="500" text-anchor="start" class="">输出字段 · 输入依赖接在左端</text>
+<g class="field" data-field="pricing.goods_fen" role="button" tabindex="0" aria-label="商品金额 pricing.goods_fen"><title>价格计算 · 分支 A · 商品金额 (pricing.goods_fen)
+← 规范化.购买数量 + 规范化.商品单价
+clean.quantity × clean.unit_price_fen
+</title>
+<rect class="row-bg" x="834" y="250" width="317" height="61" rx="7" fill="#EDFAF6" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="842" y="261" width="3" height="14" rx="1.5" fill="#D38727"/>
+<text x="852" y="272" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">商品金额</text>
+<text x="1144" y="272" font-size="10" fill="#D38727" font-weight="650" text-anchor="end" class="">计算</text>
+<text x="852" y="289" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">goods_fen</text>
+<text x="1144" y="289" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">int/分</text>
+<text x="852" y="304" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">数量 × 单价 = 20,000 分</text>
+<circle cx="825" cy="274" r="3.8" fill="#D38727" stroke="white" stroke-width="1.2"/>
+<circle cx="1160" cy="274" r="3.8" fill="#D38727" stroke="white" stroke-width="1.2"/>
+</g>
+<g class="field" data-field="pricing.coupon_fen" role="button" tabindex="0" aria-label="优惠券面额 pricing.coupon_fen"><title>价格计算 · 分支 A · 优惠券面额 (pricing.coupon_fen)
+← 规范化.优惠码 + 优惠配置.优惠码 → 面额
+coupons.amounts.get(clean.coupon_code, 0)
+优惠码用于选择哪条配置；面额值来自优惠配置。实际抵扣额不会超过商品金额。</title>
+<rect class="row-bg" x="834" y="320" width="317" height="61" rx="7" fill="#EDFAF6" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="842" y="331" width="3" height="14" rx="1.5" fill="#9162C9"/>
+<text x="852" y="342" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">优惠券面额</text>
+<text x="1144" y="342" font-size="10" fill="#9162C9" font-weight="650" text-anchor="end" class="">查表</text>
+<text x="852" y="359" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">coupon_fen</text>
+<text x="1144" y="359" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">int/分</text>
+<text x="852" y="374" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">按优惠码查面额；未匹配取 0</text>
+<circle cx="825" cy="344" r="3.8" fill="#9162C9" stroke="white" stroke-width="1.2"/>
+<circle cx="1160" cy="344" r="3.8" fill="#9162C9" stroke="white" stroke-width="1.2"/>
+</g>
+</g>
+<g class="node" data-node="rates">
+<rect class="node-frame" x="400" y="920" width="280" height="183" rx="15" fill="white" stroke="#D8C5F0" stroke-width="1.4"/>
+<path d="M415,920 H665 Q680,920 680,935 V990 H400 V935 Q400,920 415,920" fill="#F5EFFF"/>
+<text x="416" y="949" font-size="17" fill="#233C57" font-weight="750" text-anchor="start" class="">区域运费配置</text>
+<text x="416" y="972" font-size="10.5" fill="#7A8CA3" font-weight="500" text-anchor="start" class="">查表快照 · 非计算产生</text>
+<text x="416" y="1005" font-size="10" fill="#8091A6" font-weight="500" text-anchor="start" class="">输出字段 · 输入依赖接在左端</text>
+<g class="field" data-field="rates.fees" role="button" tabindex="0" aria-label="区域 → 运费 rates.fees"><title>区域运费配置 · 区域 → 运费 (rates.fees)
+源：shipping.fees
+
+</title>
+<rect class="row-bg" x="409" y="1015" width="262" height="61" rx="7" fill="#F5EFFF" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="417" y="1026" width="3" height="14" rx="1.5" fill="#9162C9"/>
+<text x="427" y="1037" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">区域 → 运费</text>
+<text x="664" y="1037" font-size="10" fill="#9162C9" font-weight="650" text-anchor="end" class="">源</text>
+<text x="427" y="1054" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">fees</text>
+<text x="664" y="1054" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">map/分</text>
+<text x="427" y="1069" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">east → 800 分（8 元）</text>
+<circle cx="680" cy="1039" r="3.8" fill="#9162C9" stroke="white" stroke-width="1.2"/>
+</g>
+</g>
+<g class="node" data-node="shipping">
+<rect class="node-frame" x="825" y="800" width="335" height="183" rx="15" fill="white" stroke="#AADACD" stroke-width="1.4"/>
+<path d="M840,800 H1145 Q1160,800 1160,815 V870 H825 V815 Q825,800 840,800" fill="#EDFAF6"/>
+<text x="841" y="829" font-size="17" fill="#233C57" font-weight="750" text-anchor="start" class="">运费计算 · 分支 B</text>
+<text x="841" y="852" font-size="10.5" fill="#7A8CA3" font-weight="500" text-anchor="start" class="">1 个新字段 · 可独立计算</text>
+<text x="841" y="885" font-size="10" fill="#8091A6" font-weight="500" text-anchor="start" class="">输出字段 · 输入依赖接在左端</text>
+<g class="field" data-field="shipping.shipping_fen" role="button" tabindex="0" aria-label="运费 shipping.shipping_fen"><title>运费计算 · 分支 B · 运费 (shipping.shipping_fen)
+← 规范化.收货区域 + 运费配置.区域 → 运费
+rates.fees[clean.region]
+区域决定选择哪条运费，运费数值来自配置。未知区域报错，本请求不输出。</title>
+<rect class="row-bg" x="834" y="895" width="317" height="61" rx="7" fill="#EDFAF6" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="842" y="906" width="3" height="14" rx="1.5" fill="#9162C9"/>
+<text x="852" y="917" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">运费</text>
+<text x="1144" y="917" font-size="10" fill="#9162C9" font-weight="650" text-anchor="end" class="">查表</text>
+<text x="852" y="934" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">shipping_fen</text>
+<text x="1144" y="934" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">int/分</text>
+<text x="852" y="949" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">按区域查表 → 800 分</text>
+<circle cx="825" cy="919" r="3.8" fill="#9162C9" stroke="white" stroke-width="1.2"/>
+<circle cx="1160" cy="919" r="3.8" fill="#9162C9" stroke="white" stroke-width="1.2"/>
+</g>
+</g>
+<g class="node" data-node="checkout">
+<rect class="node-frame" x="1300" y="325" width="345" height="463" rx="15" fill="white" stroke="#EACD9E" stroke-width="1.4"/>
+<path d="M1315,325 H1630 Q1645,325 1645,340 V395 H1300 V340 Q1300,325 1315,325" fill="#FFF6E8"/>
+<text x="1316" y="354" font-size="17" fill="#233C57" font-weight="750" text-anchor="start" class="">汇合与结算输出</text>
+<text x="1316" y="377" font-size="10.5" fill="#7A8CA3" font-weight="500" text-anchor="start" class="">同一请求上下文汇合 · 5 个输出</text>
+<text x="1316" y="410" font-size="10" fill="#8091A6" font-weight="500" text-anchor="start" class="">输出字段 · 输入依赖接在左端</text>
+<g class="field" data-field="checkout.order_id" role="button" tabindex="0" aria-label="订单号 checkout.order_id"><title>汇合与结算输出 · 订单号 (checkout.order_id)
+← 规范化.订单号
+
+从规范化结果直接传入；不需要经过价格或运费计算。</title>
+<rect class="row-bg" x="1309" y="420" width="327" height="61" rx="7" fill="#FFF6E8" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="1317" y="431" width="3" height="14" rx="1.5" fill="#3976CF"/>
+<text x="1327" y="442" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">订单号</text>
+<text x="1629" y="442" font-size="10" fill="#3976CF" font-weight="650" text-anchor="end" class="">透传</text>
+<text x="1327" y="459" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">order_id</text>
+<text x="1629" y="459" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">str</text>
+<text x="1327" y="474" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">← 规范化.订单号</text>
+<circle cx="1300" cy="444" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+<circle cx="1645" cy="444" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+</g>
+<g class="field" data-field="checkout.goods_fen" role="button" tabindex="0" aria-label="商品金额 checkout.goods_fen"><title>汇合与结算输出 · 商品金额 (checkout.goods_fen)
+← 价格分支.商品金额
+
+</title>
+<rect class="row-bg" x="1309" y="490" width="327" height="61" rx="7" fill="#FFF6E8" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="1317" y="501" width="3" height="14" rx="1.5" fill="#3976CF"/>
+<text x="1327" y="512" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">商品金额</text>
+<text x="1629" y="512" font-size="10" fill="#3976CF" font-weight="650" text-anchor="end" class="">透传</text>
+<text x="1327" y="529" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">goods_fen</text>
+<text x="1629" y="529" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">int/分</text>
+<text x="1327" y="544" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">← 价格分支.商品金额</text>
+<circle cx="1300" cy="514" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+<circle cx="1645" cy="514" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+</g>
+<g class="field" data-field="checkout.coupon_fen" role="button" tabindex="0" aria-label="优惠券面额 checkout.coupon_fen"><title>汇合与结算输出 · 优惠券面额 (checkout.coupon_fen)
+← 价格分支.优惠券面额
+
+</title>
+<rect class="row-bg" x="1309" y="560" width="327" height="61" rx="7" fill="#FFF6E8" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="1317" y="571" width="3" height="14" rx="1.5" fill="#3976CF"/>
+<text x="1327" y="582" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">优惠券面额</text>
+<text x="1629" y="582" font-size="10" fill="#3976CF" font-weight="650" text-anchor="end" class="">透传</text>
+<text x="1327" y="599" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">coupon_fen</text>
+<text x="1629" y="599" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">int/分</text>
+<text x="1327" y="614" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">← 价格分支.优惠券面额</text>
+<circle cx="1300" cy="584" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+<circle cx="1645" cy="584" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+</g>
+<g class="field" data-field="checkout.shipping_fen" role="button" tabindex="0" aria-label="运费 checkout.shipping_fen"><title>汇合与结算输出 · 运费 (checkout.shipping_fen)
+← 运费分支.运费
+
+</title>
+<rect class="row-bg" x="1309" y="630" width="327" height="61" rx="7" fill="#FFF6E8" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="1317" y="641" width="3" height="14" rx="1.5" fill="#3976CF"/>
+<text x="1327" y="652" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">运费</text>
+<text x="1629" y="652" font-size="10" fill="#3976CF" font-weight="650" text-anchor="end" class="">透传</text>
+<text x="1327" y="669" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">shipping_fen</text>
+<text x="1629" y="669" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">int/分</text>
+<text x="1327" y="684" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">← 运费分支.运费</text>
+<circle cx="1300" cy="654" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+<circle cx="1645" cy="654" r="3.8" fill="#3976CF" stroke="white" stroke-width="1.2"/>
+</g>
+<g class="field" data-field="checkout.payable_fen" role="button" tabindex="0" aria-label="应付金额 checkout.payable_fen"><title>汇合与结算输出 · 应付金额 (checkout.payable_fen)
+← 价格分支.商品金额 + 价格分支.优惠券面额 + 运费分支.运费
+max(pricing.goods_fen − pricing.coupon_fen, 0) + shipping.shipping_fen
+200 元 − 20 元 + 8 元 = 188 元。等待两条分支成功；这不是按 order_id 做数据表 JOIN。</title>
+<rect class="row-bg" x="1309" y="700" width="327" height="61" rx="7" fill="#FFF6E8" fill-opacity=".53" stroke="#DFE7F0" stroke-width=".8"/>
+<rect x="1317" y="711" width="3" height="14" rx="1.5" fill="#D38727"/>
+<text x="1327" y="722" font-size="13" fill="#203B59" font-weight="700" text-anchor="start" class="">应付金额</text>
+<text x="1629" y="722" font-size="10" fill="#D38727" font-weight="650" text-anchor="end" class="">计算</text>
+<text x="1327" y="739" font-size="11" fill="#536B86" font-weight="500" text-anchor="start" class="">payable_fen</text>
+<text x="1629" y="739" font-size="9.5" fill="#8292A6" font-weight="500" text-anchor="end" class="">int/分</text>
+<text x="1327" y="754" font-size="9.5" fill="#7990A4" font-weight="450" text-anchor="start" class="">max(商品 − 优惠, 0) + 运费</text>
+<circle cx="1300" cy="724" r="3.8" fill="#D38727" stroke="white" stroke-width="1.2"/>
+<circle cx="1645" cy="724" r="3.8" fill="#D38727" stroke="white" stroke-width="1.2"/>
+</g>
+</g>
+<text x="870" y="575" font-size="12" fill="#7B8DA5" font-weight="550" text-anchor="start" class="">订单号跨过计算分支，原样传入输出</text>
+<text x="857" y="115" font-size="12" fill="#7B8DA5" font-weight="550" text-anchor="start" class="">两条独立依赖分支，无强制先后</text>
+<text x="1300" y="855" font-size="20" fill="#7B8DA5" font-weight="550" text-anchor="start" class="">200 − 20 + 8 = 188 元</text>
+<text x="1300" y="883" font-size="12" fill="#7B8DA5" font-weight="550" text-anchor="start" class="">每个输出字段均有明确来源</text>
+</svg>

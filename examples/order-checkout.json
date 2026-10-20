@@ -1,0 +1,408 @@
+{
+  "schema_version": "1.0",
+  "mode": "example",
+  "title": "一笔订单的应付金额，从哪里来？",
+  "subtitle": "电商订单结算 · 价格计算与运费查表两条分支汇合；订单号原样透传，不参与金额计算。",
+  "scope": "范围：一笔请求 / 一个商品规格。输入字段只声明一次；流程节点内展示输出字段及其直接来源。",
+  "assumptions": [
+    "示例金额统一用整数“分”计算，展示时换算成元，不含税费等生产规则",
+    "商品单价视为调用前已校验的服务端值，本图不覆盖商品定价和鉴权",
+    "每笔订单仅含一个商品规格；数量为正整数，输入校验失败终止本次结算",
+    "优惠券示例表和运费配置为内存快照；未知优惠码取 0，未知区域返回错误并终止",
+    "优惠仅抵扣商品金额，不抵扣运费；两条分支均成功后才输出",
+    "这是单请求上下文汇合，不是多行数据表 JOIN；不存在隐含的跨订单关联键"
+  ],
+  "default_field": "checkout.payable_fen",
+  "nodes": [
+    {
+      "id": "order",
+      "label": "订单请求",
+      "kind": "source",
+      "position": [
+        35,
+        315
+      ],
+      "width": 260,
+      "fields": [
+        {
+          "id": "order_id",
+          "label": "订单号",
+          "type": "str",
+          "op": "root",
+          "origin": {
+            "kind": "input",
+            "locator": "order.order_id"
+          },
+          "sample": "ORD-1048"
+        },
+        {
+          "id": "quantity",
+          "label": "购买数量",
+          "type": "str",
+          "op": "root",
+          "origin": {
+            "kind": "input",
+            "locator": "order.quantity"
+          },
+          "sample": "2"
+        },
+        {
+          "id": "unit_price_fen",
+          "label": "商品单价",
+          "type": "int/分",
+          "op": "root",
+          "origin": {
+            "kind": "input",
+            "locator": "order.unit_price_fen"
+          },
+          "sample": 10000
+        },
+        {
+          "id": "coupon_code",
+          "label": "优惠码",
+          "type": "str",
+          "op": "root",
+          "origin": {
+            "kind": "input",
+            "locator": "order.coupon_code"
+          },
+          "sample": "save20"
+        },
+        {
+          "id": "region",
+          "label": "收货区域",
+          "type": "str",
+          "op": "root",
+          "origin": {
+            "kind": "input",
+            "locator": "order.region"
+          },
+          "sample": "east"
+        }
+      ],
+      "short": "订单",
+      "subtitle": "5 个根字段 · 单规格订单"
+    },
+    {
+      "id": "clean",
+      "label": "校验与规范化",
+      "kind": "process",
+      "position": [
+        370,
+        315
+      ],
+      "width": 310,
+      "fields": [
+        {
+          "id": "order_id",
+          "label": "订单号",
+          "type": "str",
+          "op": "identity",
+          "from": [
+            "order.order_id"
+          ],
+          "sample": "ORD-1048"
+        },
+        {
+          "id": "quantity",
+          "label": "购买数量",
+          "type": "int",
+          "op": "cast",
+          "from": [
+            "order.quantity"
+          ],
+          "rule": "parse_positive_integer(order.quantity)",
+          "display_rule": "\"2\" → 2；必须为正整数",
+          "sample": 2
+        },
+        {
+          "id": "unit_price_fen",
+          "label": "商品单价",
+          "type": "int/分",
+          "op": "identity",
+          "from": [
+            "order.unit_price_fen"
+          ],
+          "sample": 10000
+        },
+        {
+          "id": "coupon_code",
+          "label": "优惠码",
+          "type": "str",
+          "op": "normalize",
+          "from": [
+            "order.coupon_code"
+          ],
+          "rule": "upper(trim(order.coupon_code))",
+          "display_rule": "去空格 + 转大写",
+          "sample": "SAVE20"
+        },
+        {
+          "id": "region",
+          "label": "收货区域",
+          "type": "str",
+          "op": "identity",
+          "from": [
+            "order.region"
+          ],
+          "sample": "east"
+        }
+      ],
+      "short": "规范化",
+      "subtitle": "5 → 5 · 改值，不凭空增字段"
+    },
+    {
+      "id": "coupons",
+      "label": "优惠券配置",
+      "kind": "config",
+      "position": [
+        400,
+        45
+      ],
+      "width": 280,
+      "fields": [
+        {
+          "id": "amounts",
+          "label": "优惠码 → 面额",
+          "type": "map/分",
+          "op": "root",
+          "origin": {
+            "kind": "config",
+            "locator": "coupons.amounts"
+          },
+          "sample": {
+            "SAVE20": 2000
+          },
+          "display_rule": "SAVE20 → 2,000 分（20 元）"
+        }
+      ],
+      "short": "优惠配置",
+      "subtitle": "配置值也是明确来源"
+    },
+    {
+      "id": "pricing",
+      "label": "价格计算 · 分支 A",
+      "kind": "process",
+      "position": [
+        825,
+        155
+      ],
+      "width": 335,
+      "fields": [
+        {
+          "id": "goods_fen",
+          "label": "商品金额",
+          "type": "int/分",
+          "op": "derive",
+          "from": [
+            "clean.quantity",
+            "clean.unit_price_fen"
+          ],
+          "rule": "clean.quantity × clean.unit_price_fen",
+          "display_rule": "数量 × 单价 = 20,000 分",
+          "sample": 20000
+        },
+        {
+          "id": "coupon_fen",
+          "label": "优惠券面额",
+          "type": "int/分",
+          "op": "lookup",
+          "from": [
+            {
+              "ref": "clean.coupon_code",
+              "role": "selector"
+            },
+            {
+              "ref": "coupons.amounts",
+              "role": "value"
+            }
+          ],
+          "rule": "coupons.amounts.get(clean.coupon_code, 0)",
+          "display_rule": "按优惠码查面额；未匹配取 0",
+          "sample": 2000,
+          "note": "优惠码用于选择哪条配置；面额值来自优惠配置。实际抵扣额不会超过商品金额。"
+        }
+      ],
+      "short": "价格分支",
+      "subtitle": "2 个新字段 · 不依赖运费分支"
+    },
+    {
+      "id": "rates",
+      "label": "区域运费配置",
+      "kind": "config",
+      "position": [
+        400,
+        920
+      ],
+      "width": 280,
+      "fields": [
+        {
+          "id": "fees",
+          "label": "区域 → 运费",
+          "type": "map/分",
+          "op": "root",
+          "origin": {
+            "kind": "config",
+            "locator": "shipping.fees"
+          },
+          "sample": {
+            "east": 800,
+            "west": 1200
+          },
+          "display_rule": "east → 800 分（8 元）"
+        }
+      ],
+      "short": "运费配置",
+      "subtitle": "查表快照 · 非计算产生"
+    },
+    {
+      "id": "shipping",
+      "label": "运费计算 · 分支 B",
+      "kind": "process",
+      "position": [
+        825,
+        800
+      ],
+      "width": 335,
+      "fields": [
+        {
+          "id": "shipping_fen",
+          "label": "运费",
+          "type": "int/分",
+          "op": "lookup",
+          "from": [
+            {
+              "ref": "clean.region",
+              "role": "selector"
+            },
+            {
+              "ref": "rates.fees",
+              "role": "value"
+            }
+          ],
+          "rule": "rates.fees[clean.region]",
+          "display_rule": "按区域查表 → 800 分",
+          "sample": 800,
+          "note": "区域决定选择哪条运费，运费数值来自配置。未知区域报错，本请求不输出。"
+        }
+      ],
+      "short": "运费分支",
+      "subtitle": "1 个新字段 · 可独立计算"
+    },
+    {
+      "id": "checkout",
+      "label": "汇合与结算输出",
+      "kind": "output",
+      "position": [
+        1300,
+        325
+      ],
+      "width": 345,
+      "fields": [
+        {
+          "id": "order_id",
+          "label": "订单号",
+          "type": "str",
+          "op": "identity",
+          "from": [
+            "clean.order_id"
+          ],
+          "sample": "ORD-1048",
+          "note": "从规范化结果直接传入；不需要经过价格或运费计算。"
+        },
+        {
+          "id": "goods_fen",
+          "label": "商品金额",
+          "type": "int/分",
+          "op": "identity",
+          "from": [
+            "pricing.goods_fen"
+          ],
+          "sample": 20000
+        },
+        {
+          "id": "coupon_fen",
+          "label": "优惠券面额",
+          "type": "int/分",
+          "op": "identity",
+          "from": [
+            "pricing.coupon_fen"
+          ],
+          "sample": 2000
+        },
+        {
+          "id": "shipping_fen",
+          "label": "运费",
+          "type": "int/分",
+          "op": "identity",
+          "from": [
+            "shipping.shipping_fen"
+          ],
+          "sample": 800
+        },
+        {
+          "id": "payable_fen",
+          "label": "应付金额",
+          "type": "int/分",
+          "op": "derive",
+          "from": [
+            "pricing.goods_fen",
+            "pricing.coupon_fen",
+            "shipping.shipping_fen"
+          ],
+          "rule": "max(pricing.goods_fen − pricing.coupon_fen, 0) + shipping.shipping_fen",
+          "display_rule": "max(商品 − 优惠, 0) + 运费",
+          "sample": 18800,
+          "note": "200 元 − 20 元 + 8 元 = 188 元。等待两条分支成功；这不是按 order_id 做数据表 JOIN。"
+        }
+      ],
+      "short": "结算",
+      "subtitle": "同一请求上下文汇合 · 5 个输出"
+    }
+  ],
+  "outputs": [
+    "checkout.order_id",
+    "checkout.goods_fen",
+    "checkout.coupon_fen",
+    "checkout.shipping_fen",
+    "checkout.payable_fen"
+  ],
+  "routes": {
+    "clean.order_id->checkout.order_id": [
+      [
+        735,
+        610
+      ],
+      [
+        1230,
+        610
+      ]
+    ]
+  },
+  "annotations": [
+    {
+      "x": 870,
+      "y": 575,
+      "text": "订单号跨过计算分支，原样传入输出",
+      "size": 12
+    },
+    {
+      "x": 857,
+      "y": 115,
+      "text": "两条独立依赖分支，无强制先后",
+      "size": 12
+    },
+    {
+      "x": 1300,
+      "y": 855,
+      "text": "200 − 20 + 8 = 188 元",
+      "size": 20
+    },
+    {
+      "x": 1300,
+      "y": 883,
+      "text": "每个输出字段均有明确来源",
+      "size": 12
+    }
+  ]
+}

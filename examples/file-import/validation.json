@@ -1,0 +1,149 @@
+{
+  "valid": true,
+  "mode": "design",
+  "nodes": 4,
+  "fields": 7,
+  "dependency_edges": 4,
+  "outputs": [
+    "result.file_name",
+    "result.row_count",
+    "result.received_at"
+  ],
+  "covered_outputs": [
+    "result.file_name",
+    "result.row_count",
+    "result.received_at"
+  ],
+  "verified_outputs": [],
+  "warnings": [],
+  "traces": {
+    "result.file_name": {
+      "fields": [
+        "result.file_name",
+        "upload.file_name"
+      ],
+      "roots": [
+        "upload.file_name"
+      ],
+      "unknown": [],
+      "edges": [
+        [
+          "upload.file_name",
+          "result.file_name",
+          "value",
+          ""
+        ]
+      ]
+    },
+    "result.row_count": {
+      "fields": [
+        "parse.row_count",
+        "result.row_count",
+        "upload.content"
+      ],
+      "roots": [
+        "upload.content"
+      ],
+      "unknown": [],
+      "edges": [
+        [
+          "parse.row_count",
+          "result.row_count",
+          "value",
+          ""
+        ],
+        [
+          "upload.content",
+          "parse.row_count",
+          "value",
+          ""
+        ]
+      ]
+    },
+    "result.received_at": {
+      "fields": [
+        "clock.now",
+        "result.received_at"
+      ],
+      "roots": [
+        "clock.now"
+      ],
+      "unknown": [],
+      "edges": [
+        [
+          "clock.now",
+          "result.received_at",
+          "value",
+          ""
+        ]
+      ]
+    }
+  },
+  "geometry": {
+    "width": 1265,
+    "height": 704.0,
+    "boxes": {
+      "upload": {
+        "w": 300,
+        "h": 253,
+        "x": 40,
+        "y": 120.0
+      },
+      "parse": {
+        "w": 300,
+        "h": 183,
+        "x": 480,
+        "y": 296.5
+      },
+      "clock": {
+        "w": 300,
+        "h": 183,
+        "x": 40,
+        "y": 473.0
+      },
+      "result": {
+        "w": 300,
+        "h": 323,
+        "x": 920,
+        "y": 226.5
+      }
+    },
+    "ports": {
+      "upload.file_name": {
+        "x1": 40,
+        "x2": 340,
+        "y": 239.0
+      },
+      "upload.content": {
+        "x1": 40,
+        "x2": 340,
+        "y": 309.0
+      },
+      "parse.row_count": {
+        "x1": 480,
+        "x2": 780,
+        "y": 415.5
+      },
+      "clock.now": {
+        "x1": 40,
+        "x2": 340,
+        "y": 592.0
+      },
+      "result.file_name": {
+        "x1": 920,
+        "x2": 1220,
+        "y": 345.5
+      },
+      "result.row_count": {
+        "x1": 920,
+        "x2": 1220,
+        "y": 415.5
+      },
+      "result.received_at": {
+        "x1": 920,
+        "x2": 1220,
+        "y": 485.5
+      }
+    }
+  }
+}

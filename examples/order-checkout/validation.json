@@ -1,0 +1,434 @@
+{
+  "valid": true,
+  "mode": "example",
+  "nodes": 7,
+  "fields": 20,
+  "dependency_edges": 18,
+  "outputs": [
+    "checkout.order_id",
+    "checkout.goods_fen",
+    "checkout.coupon_fen",
+    "checkout.shipping_fen",
+    "checkout.payable_fen"
+  ],
+  "covered_outputs": [
+    "checkout.order_id",
+    "checkout.goods_fen",
+    "checkout.coupon_fen",
+    "checkout.shipping_fen",
+    "checkout.payable_fen"
+  ],
+  "verified_outputs": [],
+  "warnings": [],
+  "traces": {
+    "checkout.order_id": {
+      "fields": [
+        "checkout.order_id",
+        "clean.order_id",
+        "order.order_id"
+      ],
+      "roots": [
+        "order.order_id"
+      ],
+      "unknown": [],
+      "edges": [
+        [
+          "clean.order_id",
+          "checkout.order_id",
+          "value",
+          ""
+        ],
+        [
+          "order.order_id",
+          "clean.order_id",
+          "value",
+          ""
+        ]
+      ]
+    },
+    "checkout.goods_fen": {
+      "fields": [
+        "checkout.goods_fen",
+        "clean.quantity",
+        "clean.unit_price_fen",
+        "order.quantity",
+        "order.unit_price_fen",
+        "pricing.goods_fen"
+      ],
+      "roots": [
+        "order.quantity",
+        "order.unit_price_fen"
+      ],
+      "unknown": [],
+      "edges": [
+        [
+          "clean.quantity",
+          "pricing.goods_fen",
+          "value",
+          ""
+        ],
+        [
+          "clean.unit_price_fen",
+          "pricing.goods_fen",
+          "value",
+          ""
+        ],
+        [
+          "order.quantity",
+          "clean.quantity",
+          "value",
+          ""
+        ],
+        [
+          "order.unit_price_fen",
+          "clean.unit_price_fen",
+          "value",
+          ""
+        ],
+        [
+          "pricing.goods_fen",
+          "checkout.goods_fen",
+          "value",
+          ""
+        ]
+      ]
+    },
+    "checkout.coupon_fen": {
+      "fields": [
+        "checkout.coupon_fen",
+        "clean.coupon_code",
+        "coupons.amounts",
+        "order.coupon_code",
+        "pricing.coupon_fen"
+      ],
+      "roots": [
+        "coupons.amounts",
+        "order.coupon_code"
+      ],
+      "unknown": [],
+      "edges": [
+        [
+          "clean.coupon_code",
+          "pricing.coupon_fen",
+          "selector",
+          ""
+        ],
+        [
+          "coupons.amounts",
+          "pricing.coupon_fen",
+          "value",
+          ""
+        ],
+        [
+          "order.coupon_code",
+          "clean.coupon_code",
+          "value",
+          ""
+        ],
+        [
+          "pricing.coupon_fen",
+          "checkout.coupon_fen",
+          "value",
+          ""
+        ]
+      ]
+    },
+    "checkout.shipping_fen": {
+      "fields": [
+        "checkout.shipping_fen",
+        "clean.region",
+        "order.region",
+        "rates.fees",
+        "shipping.shipping_fen"
+      ],
+      "roots": [
+        "order.region",
+        "rates.fees"
+      ],
+      "unknown": [],
+      "edges": [
+        [
+          "clean.region",
+          "shipping.shipping_fen",
+          "selector",
+          ""
+        ],
+        [
+          "order.region",
+          "clean.region",
+          "value",
+          ""
+        ],
+        [
+          "rates.fees",
+          "shipping.shipping_fen",
+          "value",
+          ""
+        ],
+        [
+          "shipping.shipping_fen",
+          "checkout.shipping_fen",
+          "value",
+          ""
+        ]
+      ]
+    },
+    "checkout.payable_fen": {
+      "fields": [
+        "checkout.payable_fen",
+        "clean.coupon_code",
+        "clean.quantity",
+        "clean.region",
+        "clean.unit_price_fen",
+        "coupons.amounts",
+        "order.coupon_code",
+        "order.quantity",
+        "order.region",
+        "order.unit_price_fen",
+        "pricing.coupon_fen",
+        "pricing.goods_fen",
+        "rates.fees",
+        "shipping.shipping_fen"
+      ],
+      "roots": [
+        "coupons.amounts",
+        "order.coupon_code",
+        "order.quantity",
+        "order.region",
+        "order.unit_price_fen",
+        "rates.fees"
+      ],
+      "unknown": [],
+      "edges": [
+        [
+          "clean.coupon_code",
+          "pricing.coupon_fen",
+          "selector",
+          ""
+        ],
+        [
+          "clean.quantity",
+          "pricing.goods_fen",
+          "value",
+          ""
+        ],
+        [
+          "clean.region",
+          "shipping.shipping_fen",
+          "selector",
+          ""
+        ],
+        [
+          "clean.unit_price_fen",
+          "pricing.goods_fen",
+          "value",
+          ""
+        ],
+        [
+          "coupons.amounts",
+          "pricing.coupon_fen",
+          "value",
+          ""
+        ],
+        [
+          "order.coupon_code",
+          "clean.coupon_code",
+          "value",
+          ""
+        ],
+        [
+          "order.quantity",
+          "clean.quantity",
+          "value",
+          ""
+        ],
+        [
+          "order.region",
+          "clean.region",
+          "value",
+          ""
+        ],
+        [
+          "order.unit_price_fen",
+          "clean.unit_price_fen",
+          "value",
+          ""
+        ],
+        [
+          "pricing.coupon_fen",
+          "checkout.payable_fen",
+          "value",
+          ""
+        ],
+        [
+          "pricing.goods_fen",
+          "checkout.payable_fen",
+          "value",
+          ""
+        ],
+        [
+          "rates.fees",
+          "shipping.shipping_fen",
+          "value",
+          ""
+        ],
+        [
+          "shipping.shipping_fen",
+          "checkout.payable_fen",
+          "value",
+          ""
+        ]
+      ]
+    }
+  },
+  "geometry": {
+    "width": 1690,
+    "height": 1151,
+    "boxes": {
+      "order": {
+        "w": 260,
+        "h": 463,
+        "x": 35,
+        "y": 315
+      },
+      "clean": {
+        "w": 310,
+        "h": 463,
+        "x": 370,
+        "y": 315
+      },
+      "coupons": {
+        "w": 280,
+        "h": 183,
+        "x": 400,
+        "y": 45
+      },
+      "pricing": {
+        "w": 335,
+        "h": 253,
+        "x": 825,
+        "y": 155
+      },
+      "rates": {
+        "w": 280,
+        "h": 183,
+        "x": 400,
+        "y": 920
+      },
+      "shipping": {
+        "w": 335,
+        "h": 183,
+        "x": 825,
+        "y": 800
+      },
+      "checkout": {
+        "w": 345,
+        "h": 463,
+        "x": 1300,
+        "y": 325
+      }
+    },
+    "ports": {
+      "order.order_id": {
+        "x1": 35,
+        "x2": 295,
+        "y": 434
+      },
+      "order.quantity": {
+        "x1": 35,
+        "x2": 295,
+        "y": 504
+      },
+      "order.unit_price_fen": {
+        "x1": 35,
+        "x2": 295,
+        "y": 574
+      },
+      "order.coupon_code": {
+        "x1": 35,
+        "x2": 295,
+        "y": 644
+      },
+      "order.region": {
+        "x1": 35,
+        "x2": 295,
+        "y": 714
+      },
+      "clean.order_id": {
+        "x1": 370,
+        "x2": 680,
+        "y": 434
+      },
+      "clean.quantity": {
+        "x1": 370,
+        "x2": 680,
+        "y": 504
+      },
+      "clean.unit_price_fen": {
+        "x1": 370,
+        "x2": 680,
+        "y": 574
+      },
+      "clean.coupon_code": {
+        "x1": 370,
+        "x2": 680,
+        "y": 644
+      },
+      "clean.region": {
+        "x1": 370,
+        "x2": 680,
+        "y": 714
+      },
+      "coupons.amounts": {
+        "x1": 400,
+        "x2": 680,
+        "y": 164
+      },
+      "pricing.goods_fen": {
+        "x1": 825,
+        "x2": 1160,
+        "y": 274
+      },
+      "pricing.coupon_fen": {
+        "x1": 825,
+        "x2": 1160,
+        "y": 344
+      },
+      "rates.fees": {
+        "x1": 400,
+        "x2": 680,
+        "y": 1039
+      },
+      "shipping.shipping_fen": {
+        "x1": 825,
+        "x2": 1160,
+        "y": 919
+      },
+      "checkout.order_id": {
+        "x1": 1300,
+        "x2": 1645,
+        "y": 444
+      },
+      "checkout.goods_fen": {
+        "x1": 1300,
+        "x2": 1645,
+        "y": 514
+      },
+      "checkout.coupon_fen": {
+        "x1": 1300,
+        "x2": 1645,
+        "y": 584
+      },
+      "checkout.shipping_fen": {
+        "x1": 1300,
+        "x2": 1645,
+        "y": 654
+      },
+      "checkout.payable_fen": {
+        "x1": 1300,
+        "x2": 1645,
+        "y": 724
+      }
+    }
+  }
+}

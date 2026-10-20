@@ -1,0 +1,115 @@
+{
+  "browser": "Chromium",
+  "load_method": "set_content (self-contained HTML; no file URL navigation tested)",
+  "checks": [
+    {
+      "check": "no JavaScript errors",
+      "passed": true,
+      "details": []
+    },
+    {
+      "check": "no external resource requests",
+      "passed": true,
+      "details": []
+    },
+    {
+      "check": "rendered field/edge counts match validated model",
+      "passed": true
+    },
+    {
+      "check": "trace checkout.order_id",
+      "passed": true
+    },
+    {
+      "check": "trace checkout.goods_fen",
+      "passed": true
+    },
+    {
+      "check": "trace checkout.coupon_fen",
+      "passed": true
+    },
+    {
+      "check": "trace checkout.shipping_fen",
+      "passed": true
+    },
+    {
+      "check": "trace checkout.payable_fen",
+      "passed": true
+    },
+    {
+      "check": "dependency edges do not cross unrelated node boxes",
+      "passed": true,
+      "details": []
+    },
+    {
+      "check": "node labels stay within card bounds",
+      "passed": true,
+      "details": []
+    },
+    {
+      "check": "click selects exact field",
+      "passed": true
+    },
+    {
+      "check": "keyboard field selection",
+      "passed": true
+    },
+    {
+      "check": "Chinese field search",
+      "passed": true
+    },
+    {
+      "check": "view mode flow",
+      "passed": true
+    },
+    {
+      "check": "view mode all",
+      "passed": true
+    },
+    {
+      "check": "view mode focus",
+      "passed": true
+    },
+    {
+      "check": "zoom controls respond",
+      "passed": true
+    },
+    {
+      "check": "SVG export",
+      "passed": true
+    },
+    {
+      "check": "JSON export",
+      "passed": true
+    },
+    {
+      "check": "mobile selected field is visible in scrollable canvas",
+      "passed": true
+    },
+    {
+      "check": "mobile document has no page-level horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "mobile inspector stacked below canvas",
+      "passed": true
+    },
+    {
+      "check": "no JavaScript errors after interactions",
+      "passed": true,
+      "details": []
+    }
+  ],
+  "screenshots": [
+    "focus.png",
+    "overview.png",
+    "diagram.png",
+    "mobile.png"
+  ],
+  "limitations": [
+    "Checks model topology, geometry and UI, not the semantic correctness of arbitrary rule strings or real project code.",
+    "PNG appearance uses local fallback fonts; no font files are bundled."
+  ],
+  "browser_version": "144.0.7559.96",
+  "passed": true
+}

@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0",
+  "mode": "design",
+  "title": "文件导入：解析与审计汇合",
+  "subtitle": "无坐标配置，使用自动分层布局",
+  "nodes": [
+    {
+      "id": "upload",
+      "label": "上传输入",
+      "kind": "source",
+      "fields": [
+        {
+          "id": "file_name",
+          "label": "文件名",
+          "type": "str",
+          "op": "root",
+          "origin": {
+            "kind": "input",
+            "locator": "upload.file_name"
+          },
+          "sample": "orders.csv"
+        },
+        {
+          "id": "content",
+          "label": "文件内容",
+          "type": "bytes",
+          "op": "root",
+          "origin": {
+            "kind": "file",
+            "locator": "uploaded bytes"
+          },
+          "sample": "a,b\\n1,2"
+        }
+      ]
+    },
+    {
+      "id": "parse",
+      "label": "解析内容",
+      "kind": "process",
+      "fields": [
+        {
+          "id": "row_count",
+          "label": "数据行数",
+          "type": "int",
+          "op": "derive",
+          "from": [
+            "upload.content"
+          ],
+          "rule": "count_data_rows(content)",
+          "sample": 1
+        }
+      ]
+    },
+    {
+      "id": "clock",
+      "label": "系统时钟",
+      "kind": "source",
+      "fields": [
+        {
+          "id": "now",
+          "label": "接收时间",
+          "type": "datetime",
+          "op": "root",
+          "origin": {
+            "kind": "runtime",
+            "locator": "clock.now"
+          },
+          "sample": "2026-01-01T10:00:00Z"
+        }
+      ]
+    },
+    {
+      "id": "result",
+      "label": "导入结果",
+      "kind": "output",
+      "fields": [
+        {
+          "id": "file_name",
+          "label": "文件名",
+          "type": "str",
+          "op": "identity",
+          "from": [
+            "upload.file_name"
+          ]
+        },
+        {
+          "id": "row_count",
+          "label": "数据行数",
+          "type": "int",
+          "op": "identity",
+          "from": [
+            "parse.row_count"
+          ]
+        },
+        {
+          "id": "received_at",
+          "label": "接收时间",
+          "type": "datetime",
+          "op": "rename",
+          "from": [
+            "clock.now"
+          ]
+        }
+      ]
+    }
+  ]
+}
