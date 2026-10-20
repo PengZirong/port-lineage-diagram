@@ -92,6 +92,8 @@ tools/                        仅维护者使用的打包和发布工具
 
 ## 开发与版本
 
-[开发、测试与发布](docs/development.md) · [Skill 评估](evals/README.md) · [变更记录](CHANGELOG.md)
+[开发与发布指南](docs/development.md) · [Skill 评估](evals/README.md) · [更新日志](CHANGELOG.md) · [最新正式版本](https://github.com/PengZirong/port-lineage-diagram/releases/latest)
 
-目录重构记录在 `Unreleased`，不移动或覆盖已有 `v1.0.0` 标签和 Release。当前不新增许可证授权；许可证选择与公开可见性分别处理。
+每个正式版本的安装包和 SHA-256 校验文件均在对应的 GitHub Release 中提供；完整演示、开发文档和历史版本可在仓库中查看。
+
+> **许可说明**：本仓库目前尚未添加开源许可证。公开可见不代表允许自由复制、修改或再分发代码。
