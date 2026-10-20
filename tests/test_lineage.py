@@ -6,12 +6,13 @@ import tempfile
 import unittest
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'scripts'))
+SKILL=ROOT/'skills/port-lineage-diagram'
+sys.path.insert(0,str(SKILL/'scripts'))
 import lineage as L
 
 class LineageTests(unittest.TestCase):
     def setUp(self):
-        self.m=json.loads((ROOT/'examples/order-checkout.json').read_text(encoding='utf-8'))
+        self.m=json.loads((SKILL/'assets/examples/order-checkout.json').read_text(encoding='utf-8'))
     def field(self,m,ref):
         n,f=ref.split('.')
         return next(x for x in next(x for x in m['nodes'] if x['id']==n)['fields'] if x['id']==f)
@@ -86,7 +87,7 @@ class LineageTests(unittest.TestCase):
         self.assertEqual(max(1500-2000,0)+800,800)
         self.assertEqual({'SAVE20':2000}.get('UNKNOWN',0),0)
     def test_generic_second_example_auto_layout(self):
-        m=json.loads((ROOT/'examples/file-import.json').read_text(encoding='utf-8'))
+        m=json.loads((SKILL/'assets/examples/file-import.json').read_text(encoding='utf-8'))
         r=L.validate(m);b=L.layout(m)
         self.assertEqual(len(r['covered_outputs']),3)
         self.assertEqual(L.geometry_issues(b),[])
@@ -109,8 +110,8 @@ class LineageTests(unittest.TestCase):
     def test_build_is_deterministic_and_offline(self):
         with tempfile.TemporaryDirectory() as t:
             a,b=Path(t)/'a',Path(t)/'b'
-            L.build(ROOT/'examples/order-checkout.json',a,True)
-            L.build(ROOT/'examples/order-checkout.json',b,True)
+            L.build(SKILL/'assets/examples/order-checkout.json',a,True)
+            L.build(SKILL/'assets/examples/order-checkout.json',b,True)
             for name in ('index.html','diagram.svg','model.json','validation.json'):
                 self.assertEqual((a/name).read_bytes(),(b/name).read_bytes())
             h=(a/'index.html').read_text()
