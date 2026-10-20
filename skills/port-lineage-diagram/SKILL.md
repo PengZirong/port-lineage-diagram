@@ -5,6 +5,8 @@ description: >
   当用户要求绘制字段流转、字段级血缘、字段转换、非线性分支与汇合，或追踪输出字段来源时使用。
   生成可离线阅读的交互 HTML、可编辑 SVG、依赖模型和校验结果；具备浏览器条件时生成真实 PNG。
 compatibility: Python 3.10+；核心渲染仅用标准库。浏览器截图另需 Playwright 和本地 Chromium。核心构建不联网，不需要 Node.js 或 API 密钥。
+metadata:
+  version: "1.1.0"
 ---
 
 # 端口式流程与字段血缘图

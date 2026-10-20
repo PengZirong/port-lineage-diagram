@@ -1,0 +1,110 @@
+name: Publish release
+
+on:
+  push:
+    branches: [main]
+    paths: ['docs/releases/v*.md']
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Existing checkout version to publish, for example v1.1.0'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: port-lineage-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.repository == 'PengZirong/port-lineage-diagram' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      PYTHONUTF8: '1'
+    steps:
+      - name: Check out the exact triggering commit
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Resolve version and release notes
+        env:
+          REQUESTED_VERSION: ${{ inputs.version }}
+        run: |
+          python3 - <<'PY'
+          import os, re
+          from pathlib import Path
+          text = Path('skills/port-lineage-diagram/SKILL.md').read_text(encoding='utf-8')
+          frontmatter = text.split('---', 2)[1]
+          match = re.search(r'^  version: "([0-9]+\.[0-9]+\.[0-9]+)"$', frontmatter, re.M)
+          if not match:
+              raise SystemExit('SKILL.md must declare a stable metadata.version')
+          version = 'v' + match[1]
+          requested = os.environ.get('REQUESTED_VERSION', '')
+          if requested and requested != version:
+              raise SystemExit('Requested version differs from the checked-out Skill')
+          notes = Path('docs/releases') / (version + '.md')
+          if not notes.is_file() or not notes.read_text(encoding='utf-8').strip():
+              raise SystemExit('Missing release notes for ' + version)
+          with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as output:
+              output.write('VERSION=' + version + '\n')
+          print('Preparing ' + version + ' from ' + os.environ['GITHUB_SHA'])
+          PY
+
+      - name: Run repository regression tests
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Strictly build both examples and package the installation unit
+        run: python3 tools/package_skill.py --version "$VERSION" --out "dist/$VERSION"
+
+      - name: Create a new tag without moving an existing one
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import os, sys
+          sys.path.insert(0, 'tools')
+          from publish_release import api, assert_no_release, run, tagged_commit
+          repo = os.environ['GITHUB_REPOSITORY']
+          version = os.environ['VERSION']
+          sha = os.environ['GITHUB_SHA']
+          if run('git', 'rev-parse', 'HEAD') != sha or run('git', 'status', '--porcelain'):
+              raise SystemExit('Checkout changed during verification')
+          assert_no_release(repo, version)
+          refs = api(f'repos/{repo}/git/matching-refs/tags/{version}')
+          existing = [item for item in refs if item['ref'] == f'refs/tags/{version}']
+          if existing:
+              if tagged_commit(repo, version) != sha:
+                  raise SystemExit('Existing tag points elsewhere; refusing to move it')
+          else:
+              run('gh', 'api', f'repos/{repo}/git/refs', '--method', 'POST',
+                  '-f', f'ref=refs/tags/{version}', '-f', f'sha={sha}')
+          run('git', 'fetch', '--no-tags', 'origin', f'refs/tags/{version}:refs/tags/{version}')
+          PY
+
+      - name: Publish the release and installation assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 tools/publish_release.py --version "$VERSION" \
+            --notes "docs/releases/$VERSION.md" --publish
+
+      - name: Verify downloaded assets against the local build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          check_dir="$(mktemp -d)"
+          gh release download "$VERSION" --repo "$GITHUB_REPOSITORY" --dir "$check_dir"
+          (cd "$check_dir" && sha256sum --check SHA256SUMS)
+          cmp "dist/$VERSION/port-lineage-diagram-$VERSION.zip" "$check_dir/port-lineage-diagram-$VERSION.zip"
+          cmp "dist/$VERSION/SHA256SUMS" "$check_dir/SHA256SUMS"
+          printf '### Published %s\n\nTests passed; the tag matches the triggering commit. Downloaded ZIP and checksum file match the local build byte for byte.\n' "$VERSION" >> "$GITHUB_STEP_SUMMARY"
