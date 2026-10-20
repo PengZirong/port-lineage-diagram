@@ -10,3 +10,9 @@ Thumbs.db
 /output/
 /dist/
 /.publish-state.json
+
+# Local Agent evaluations and temporary installation fixtures
+/evals/runs/
+/.agents/
+/.claude/
+/skills-lock.json
